@@ -11,7 +11,7 @@ public class Customer {
     @Id
     @GenericGenerator(name="native",strategy = "native")
     @Column(name="ID")
-    private String id;
+    private Long id;
 
     @Column(name = "NACHNAME")
     private String lastName;
@@ -23,11 +23,11 @@ public class Customer {
     @Column(name = "RECHNUNGEN")
     private List<Invoice> invoices;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

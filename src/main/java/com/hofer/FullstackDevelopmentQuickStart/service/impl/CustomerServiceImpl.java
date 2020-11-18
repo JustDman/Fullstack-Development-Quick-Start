@@ -2,32 +2,54 @@ package com.hofer.FullstackDevelopmentQuickStart.service.impl;
 
 import com.hofer.FullstackDevelopmentQuickStart.model.request.CustomerDetailsRequestModel;
 import com.hofer.FullstackDevelopmentQuickStart.model.response.Customer;
+import com.hofer.FullstackDevelopmentQuickStart.repository.CustomerRepository;
 import com.hofer.FullstackDevelopmentQuickStart.service.CustomerService;
 import com.hofer.FullstackDevelopmentQuickStart.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CustomerServiceImpl implements CustomerService {
 
+    @Autowired
+    CustomerRepository repo;
+
+
     Utils utils;
 
-    public CustomerServiceImpl() {}
+    public CustomerServiceImpl() {
+    }
 
     @Autowired
-    public CustomerServiceImpl(Utils utils)
-    {
-        this.utils =utils;
+    public CustomerServiceImpl(Utils utils) {
+        this.utils = utils;
     }
 
     @Override
-    public Customer createCustomer(CustomerDetailsRequestModel customerDetails) {
-        Customer returnValue = new Customer();
-        returnValue.setFirstName(customerDetails.getFirstName());
-        returnValue.setLastName(customerDetails.getLastName());
-        returnValue.setInvoices(customerDetails.getInvoices());
-        returnValue.setId(utils.generateId());
+    public List<Customer> listAll() {
+        return repo.findAll();
+    }
 
-        return returnValue;
+    @Override
+    public void save(Customer customer) {
+        repo.save(customer);
+    }
+
+    @Override
+    public Customer get(Long id) {
+        return repo.findById(id).get();
+    }
+
+    public boolean exists(Long id) {
+        return repo.existsById(id);
+    }
+
+    @Override
+    public void delete(Long id) {
+        repo.deleteById(id);
     }
 }
+
+

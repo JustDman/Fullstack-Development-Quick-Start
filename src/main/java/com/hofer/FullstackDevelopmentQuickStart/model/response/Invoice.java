@@ -9,7 +9,7 @@ public class Invoice {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @Column(name = "ID")
-    private String id;
+    private Long id;
 
     @Column(name = "RECHNUNGSNUMMER")
     private String invoiceNumber;
@@ -25,11 +25,11 @@ public class Invoice {
     @JoinColumn(name = "KUNDEN_ID")
     private Customer customer;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
