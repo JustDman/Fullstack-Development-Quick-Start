@@ -32,10 +32,11 @@ public class CustomerController {
                     MediaType.APPLICATION_XML_VALUE,
                     MediaType.APPLICATION_JSON_VALUE
             } )
-    public ResponseEntity<Customer> getUser(@PathVariable Long customerId)
+    public ResponseEntity<Customer> GetCustomer(@PathVariable Long customerId)
     {
-        if(customerService.exists(customerId)) {
-            return new ResponseEntity<>(customerService.get(customerId), HttpStatus.OK);
+        if (customerService.exists(customerId)) {
+            Customer temp = customerService.get(customerId);
+            return new ResponseEntity<>(temp, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -60,7 +61,34 @@ public class CustomerController {
 
         customerService.save(returnValue);
 
-        return new ResponseEntity<Customer>(returnValue, HttpStatus.OK);
+        return new ResponseEntity<>(returnValue, HttpStatus.OK);
+    }
+
+    @PutMapping(path="/{customerId}", consumes =  {
+            MediaType.APPLICATION_XML_VALUE,
+            MediaType.APPLICATION_JSON_VALUE
+    },
+            produces =  {
+                    MediaType.APPLICATION_XML_VALUE,
+                    MediaType.APPLICATION_JSON_VALUE
+            }  )
+    public ResponseEntity<Void> updateCustomer(@PathVariable Long customerId, @Valid @RequestBody CustomerDetailsRequestModel customerDetails)
+    {
+        Customer storedCustomerDetails = customerService.get(customerId);
+        storedCustomerDetails.setFirstName(customerDetails.getFirstName());
+        storedCustomerDetails.setLastName(customerDetails.getLastName());
+
+        customerService.save(storedCustomerDetails);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping(path="/{id}")
+    public ResponseEntity<Void> deleteCustomer(@PathVariable Long id)
+    {
+        customerService.delete(id);
+
+        return ResponseEntity.noContent().build();
     }
 
 }
