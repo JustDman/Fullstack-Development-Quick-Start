@@ -17,7 +17,7 @@ public class InvoiceDetailsRequestModel {
     private float value;
 
     @NotNull(message="Kunde darf nicht NULL sein")
-    private Customer customer;
+    private Long customer;
 
     public String getInvoiceNumber() {
         return invoiceNumber;
@@ -43,11 +43,11 @@ public class InvoiceDetailsRequestModel {
         this.value = value;
     }
 
-    public Customer getCustomer() {
+    public Long getCustomer() {
         return customer;
     }
 
-    public void setCustomer(Customer customer) {
+    public void setCustomer(Long customer) {
         this.customer = customer;
     }
 }
