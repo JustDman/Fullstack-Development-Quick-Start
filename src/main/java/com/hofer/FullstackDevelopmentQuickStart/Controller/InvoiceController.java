@@ -1,6 +1,8 @@
 package com.hofer.FullstackDevelopmentQuickStart.Controller;
 
+import com.hofer.FullstackDevelopmentQuickStart.model.request.CustomerDetailsRequestModel;
 import com.hofer.FullstackDevelopmentQuickStart.model.request.InvoiceDetailsRequestModel;
+import com.hofer.FullstackDevelopmentQuickStart.model.response.Customer;
 import com.hofer.FullstackDevelopmentQuickStart.model.response.Invoice;
 import com.hofer.FullstackDevelopmentQuickStart.service.CustomerService;
 import com.hofer.FullstackDevelopmentQuickStart.service.InvoiceService;
@@ -56,14 +58,14 @@ public class InvoiceController {
                     MediaType.APPLICATION_XML_VALUE,
                     MediaType.APPLICATION_JSON_VALUE
             }  )
-    public ResponseEntity<Invoice> createUser(@Valid @RequestBody InvoiceDetailsRequestModel invoiceDetails)
+    public ResponseEntity<Invoice> createInvoice(@Valid @RequestBody InvoiceDetailsRequestModel invoiceDetails)
     {
 
         Invoice returnValue = new Invoice();
         returnValue.setId(utils.generateId());
-        returnValue.setValue(invoiceDetails.getValue());
         returnValue.setInvoiceNumber(invoiceDetails.getInvoiceNumber());
         returnValue.setInvoiceDate(new Date());
+        returnValue.setValue(invoiceDetails.getValue());
         returnValue.setCustomer(customerService.get(invoiceDetails.getCustomer()));
 
         invoiceService.save(returnValue);
@@ -91,7 +93,7 @@ public class InvoiceController {
     }
 
     @DeleteMapping(path="/{id}")
-    public ResponseEntity<Void> deleteCustomer(@PathVariable Long id)
+    public ResponseEntity<Void> deleteInvoice(@PathVariable Long id)
     {
         invoiceService.delete(id);
 

@@ -9,7 +9,7 @@ import java.util.List;
 public class Customer {
 
     @Id
-    @GenericGenerator(name="native",strategy = "native")
+    @GenericGenerator(name="native", strategy = "native")
     @Column(name="ID")
     private Long id;
 
@@ -19,7 +19,7 @@ public class Customer {
     @Column(name = "VORNAME")
     private String firstName;
 
-    @OneToMany(cascade =  CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "customer")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "customer")
     @Column(name = "RECHNUNGEN")
     private List<Invoice> invoices;
 

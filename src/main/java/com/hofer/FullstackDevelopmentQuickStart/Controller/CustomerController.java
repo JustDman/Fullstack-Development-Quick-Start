@@ -1,5 +1,6 @@
 package com.hofer.FullstackDevelopmentQuickStart.Controller;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.hofer.FullstackDevelopmentQuickStart.model.request.CustomerDetailsRequestModel;
 import com.hofer.FullstackDevelopmentQuickStart.model.response.Customer;
 import com.hofer.FullstackDevelopmentQuickStart.service.CustomerService;
@@ -27,19 +28,14 @@ public class CustomerController {
         return customerService.listAll();
     }
 
-    @GetMapping(path="/{customerId}",
+    @GetMapping(path="/{id}",
             produces =  {
                     MediaType.APPLICATION_XML_VALUE,
                     MediaType.APPLICATION_JSON_VALUE
             } )
-    public ResponseEntity<Customer> GetCustomer(@PathVariable Long customerId)
+    public ResponseEntity<Customer> GetCustomer(@PathVariable Long id)
     {
-        if (customerService.exists(customerId)) {
-            Customer temp = customerService.get(customerId);
-            return new ResponseEntity<>(temp, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
+        return new ResponseEntity<>(customerService.get(id), HttpStatus.OK);
     }
 
     @PostMapping(

@@ -10,13 +10,11 @@ public class InvoiceDetailsRequestModel {
     @NotNull(message="Rechnungsnummer darf nicht NULL sein")
     private String invoiceNumber;
 
-    @NotNull(message="Rechnungsdatum darf nicht NULL sein")
     private Date invoiceDate;
 
     @NotNull(message="Rechnungsbetrag darf nicht NULL sein")
     private float value;
 
-    @NotNull(message="Kunde darf nicht NULL sein")
     private Long customer;
 
     public String getInvoiceNumber() {
