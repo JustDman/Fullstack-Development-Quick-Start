@@ -1,10 +1,8 @@
 package com.hofer.FullstackDevelopmentQuickStart.service.impl;
 
-import com.hofer.FullstackDevelopmentQuickStart.model.request.CustomerDetailsRequestModel;
 import com.hofer.FullstackDevelopmentQuickStart.model.response.Customer;
 import com.hofer.FullstackDevelopmentQuickStart.repository.CustomerRepository;
 import com.hofer.FullstackDevelopmentQuickStart.service.CustomerService;
-import com.hofer.FullstackDevelopmentQuickStart.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,14 +15,7 @@ public class CustomerServiceImpl implements CustomerService {
     CustomerRepository repo;
 
 
-    Utils utils;
-
     public CustomerServiceImpl() {
-    }
-
-    @Autowired
-    public CustomerServiceImpl(Utils utils) {
-        this.utils = utils;
     }
 
     @Override

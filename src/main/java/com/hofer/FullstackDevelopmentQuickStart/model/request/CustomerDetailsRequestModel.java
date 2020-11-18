@@ -13,7 +13,6 @@ public class CustomerDetailsRequestModel {
     @NotNull(message="Vorname darf nicht NULL sein")
     private String firstName;
 
-    private List<Invoice> invoices;
 
     public String getLastName() {
         return lastName;
@@ -29,13 +28,5 @@ public class CustomerDetailsRequestModel {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
-
-    public List<Invoice> getInvoices() {
-        return invoices;
-    }
-
-    public void setInvoices(List<Invoice> invoices) {
-        this.invoices = invoices;
     }
 }
