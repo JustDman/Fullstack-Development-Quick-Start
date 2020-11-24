@@ -1,1 +1,1 @@
-# Test of the basics in Fullstack-Development in Java
+# Exam of the basics in Fullstack-Development in Java
